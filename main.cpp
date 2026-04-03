@@ -19,7 +19,7 @@ int main() {
     bool again;
 
     // read & populate arrays for names and colors
-    /*ifstream fin("names.txt");
+    ifstream fin("names.txt");
     string names[SZ_NAMES];
     int i = 0;
     while (fin >> names[i++]);
@@ -29,7 +29,15 @@ int main() {
     i = 0;
     while (fin1 >> colors[i++]);
     fin1.close();
-    */
+    
+    //test add, display, and delete functions
+    list<Goat> trip;
+    add_goat(trip, names, colors);
+    add_goat(trip, names, colors);
+    add_goat(trip, names, colors);
+    display_trip(trip);
+    delete_goat(trip);
+    display_trip(trip);
 
     //test extra constructors
     /*Goat g1 = Goat("guy");
@@ -40,9 +48,10 @@ int main() {
     cout << g3.get_name() << " " << g3.get_age() << " " << g3.get_color() << endl;
     */
 
-    //test mai menu
-    int choice = main_menu();
+    //test main menu
+    /*int choice = main_menu();
     cout << "You chose: " << choice << endl;
+    */
 
 
     return 0;
@@ -68,4 +77,50 @@ int main_menu() {
     cout << endl;
     return c;
 }
-
+//add goat function
+void add_goat(list<Goat> &trip, string names[], string colors[]) {
+    //generate random name, age, color
+    string name = names[rand() % SZ_NAMES];
+    int age = rand() % MAX_AGE + 1;
+    string color = colors[rand() % SZ_COLORS];
+    //create new goat and add to trip
+    Goat new_goat(name, age, color);
+    trip.push_back(new_goat);
+}
+//display trip function
+void display_trip(list<Goat> trip) {
+    //check if trip is empty
+    if (trip.empty()) {
+        cout << "No goats to display." << endl;
+        return;
+    }
+    //output header
+    cout << left << setw(20) << "Number" << setw(10) << "Name" << setw(10) << "Age" << setw(20) << "Color" << endl;
+    //output each goat
+    int i = 1;
+    for (const auto &goat : trip) {
+        cout << left << setw(20) << i++ << setw(10) << goat.get_name() << setw(10) << goat.get_age() << setw(20) << goat.get_color() << endl;
+    }
+}
+//delete goat function
+void delete_goat(list<Goat> &trip) {
+    //check if trip is empty
+    if (trip.empty()) {
+        cout << "No goats to delete." << endl;
+        return;
+    }
+    //display goats and get selection
+    display_trip(trip);
+    cout << "Enter the number of the goat to delete: ";
+    int choice;
+    cin >> choice;
+    //validate input
+    while (choice < 1 || choice > trip.size()) {
+        cout << "Invalid choice. Please enter a number between 1 and " << trip.size() << ": ";
+        cin >> choice;
+    }
+    //delete selected goat
+    auto it = trip.begin();
+    advance(it, choice - 1);
+    trip.erase(it);
+}
