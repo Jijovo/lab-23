@@ -36,8 +36,15 @@ int main() {
     add_goat(trip, names, colors);
     add_goat(trip, names, colors);
     display_trip(trip);
-    delete_goat(trip);
-    display_trip(trip);
+    int choice = main_menu();
+    while (choice != 4) {
+        switch (choice) {
+            case 1: add_goat(trip, names, colors); break;
+            case 2: delete_goat(trip); break;
+            case 3: display_trip(trip); break;
+        }
+        choice = main_menu();
+    }
 
     //test extra constructors
     /*Goat g1 = Goat("guy");
@@ -98,8 +105,11 @@ void display_trip(list<Goat> trip) {
     cout << left << setw(20) << "Number" << setw(10) << "Name" << setw(10) << "Age" << setw(20) << "Color" << endl;
     //output each goat
     int i = 1;
+    string num = "[" + to_string(i) + "]";
     for (const auto &goat : trip) {
-        cout << left << setw(20) << i++ << setw(10) << goat.get_name() << setw(10) << goat.get_age() << setw(20) << goat.get_color() << endl;
+        cout << left << setw(20) << num << setw(10) << goat.get_name() << setw(10) << goat.get_age() << setw(20) << goat.get_color() << endl;
+        i++;
+         num = "[" + to_string(i) + "]";
     }
 }
 //delete goat function
