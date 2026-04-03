@@ -19,7 +19,7 @@ int main() {
     bool again;
 
     // read & populate arrays for names and colors
-    ifstream fin("names.txt");
+    /*ifstream fin("names.txt");
     string names[SZ_NAMES];
     int i = 0;
     while (fin >> names[i++]);
@@ -29,7 +29,15 @@ int main() {
     i = 0;
     while (fin1 >> colors[i++]);
     fin1.close();
+    */
 
+    //test extra constructors
+    Goat g1 = Goat("guy");
+    Goat g2 = Goat("dude", 5);
+    Goat g3 = Goat("person", 10, "white");
+    cout << g1.get_name() << " " << g1.get_age() << " " << g1.get_color() << endl;
+    cout << g2.get_name() << " " << g2.get_age() << " " << g2.get_color() << endl;
+    cout << g3.get_name() << " " << g3.get_age() << " " << g3.get_color() << endl;
 
 
 
