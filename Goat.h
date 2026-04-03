@@ -23,6 +23,15 @@ public:
     int get_age() const             { return age; }
     void set_color(string c)        { color = c; }
     string get_color() const        { return color; }
+    //main menu
+    void main_menu() {
+        cout << "*** GOAT MANAGER 3001 ***" << endl;
+        cout << "[1] Add a goat" << endl;
+        cout << "[2] Delete a goat" << endl;
+        cout << "[3] List Goats" << endl;
+        cout << "[4] Exit" << endl;
+        cout << "Choice: ";
+    }
 
     // write overloaded < operator for the std::list
 };

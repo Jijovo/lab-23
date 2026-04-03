@@ -32,15 +32,40 @@ int main() {
     */
 
     //test extra constructors
-    Goat g1 = Goat("guy");
+    /*Goat g1 = Goat("guy");
     Goat g2 = Goat("dude", 5);
     Goat g3 = Goat("person", 10, "white");
     cout << g1.get_name() << " " << g1.get_age() << " " << g1.get_color() << endl;
     cout << g2.get_name() << " " << g2.get_age() << " " << g2.get_color() << endl;
     cout << g3.get_name() << " " << g3.get_age() << " " << g3.get_color() << endl;
+    */
 
+    //test mai menu
+    int choice = main_menu();
+    cout << "You chose: " << choice << endl;
 
 
     return 0;
+}
+
+//main menu function
+int main_menu() {
+    //output choices
+    cout << "*** GOAT MANAGER 3001 ***" << endl;
+    cout << "[1] Add a goat" << endl;
+    cout << "[2] Delete a goat" << endl;
+    cout << "[3] List Goats" << endl;
+    cout << "[4] Exit" << endl;
+    cout << "Choice: ";
+    //get input
+    int c;
+    cin >> c;
+    //validate input
+    while (c < 1 || c > 4) {
+        cout << "Invalid choice. Please enter a number between 1 and 4: ";
+        cin >> c;
+    }
+    cout << endl;
+    return c;
 }
 
